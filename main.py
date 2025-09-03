@@ -1,32 +1,30 @@
 from array import array
 
-def main() -> None:
+def main(string):
+    '''Используя метод двух индексов для массива ищем
+    наименьшее колво коробок'''
     weights_of_robots: array = array(
-        'b', sorted(list(map(int, input().split())))
+        'b', sorted([int(i) 
+                     for i in string.split()])
     )
     limit: int = int(input())
-    # используем метод двух индексов
+
     left_index: int = 0
     right_index: int = len(weights_of_robots) - 1
-    c: int = 0
+    amount_of_boxes: int = 0
 
     while left_index < right_index:
-        if (weights_of_robots[left_index] + weights_of_robots[right_index]) <= limit:
-            c += 1
+        if (weights_of_robots[left_index] + 
+            weights_of_robots[right_index]) <= limit:
+            amount_of_boxes += 1
             left_index += 1
             right_index -= 1
-        elif weights_of_robots[left_index] >= limit:
-            c += (right_index - left_index + 1)
-            break
-        elif weights_of_robots[right_index] >= limit:
-            c += 1
-            right_index -= 1
-        elif (weights_of_robots[left_index] + weights_of_robots[right_index]) > limit:
-            c += 1
+        else:
+            amount_of_boxes += 1
             right_index -= 1
     if right_index == left_index:
-        c += 1
-    print(c)
+        amount_of_boxes += 1
+    print(amount_of_boxes)
 
 if __name__ == "__main__":
-	main()
+    main(input())
