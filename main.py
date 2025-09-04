@@ -1,9 +1,9 @@
-def min_amount_of_boxes(weights_of_robots, limit):
-    """Алгоритм для мин колва коробок"""
+def min_amount_of_boxes(weights_of_robots: list, limit: int):
+    """Алгоритм для мин колва коробок
 
-    '''Используя метод двух индексов для массива ищем
+    Используя метод двух индексов для массива ищем
     наименьшее колво коробок: принимает список с весами роботов
-    и лимит веса в одной коробке, возвращает колво коробок'''
+    и лимит веса в одной коробке, возвращает колво коробок"""
 
     left_index: int = 0
     right_index: int = len(weights_of_robots) - 1
@@ -12,10 +12,7 @@ def min_amount_of_boxes(weights_of_robots, limit):
     while left_index <= right_index:
         if (weights_of_robots[left_index] +
             weights_of_robots[right_index]) <= limit:
-            amount_of_boxes += 1
             left_index += 1
-            right_index -= 1
-            continue
 
         amount_of_boxes += 1
         right_index -= 1
